@@ -4,9 +4,13 @@ import Button from "../../../shared/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import EditProduct from "./EditProduct";
+import DeleteProduct from "./DeleteProduct";
+import AddToCart from "./AddToCart";
 
 const ProductDetails = () => {
-  const [editProductModal, setEditProductModal] = useState(false)
+  const [editProductModal, setEditProductModal] = useState(false);
+  const [deleteProductModal, setDeleteProductModal] = useState(false);
+  const [addToCart, setAddToCart] = useState(false);
   return (
     <Header>
       <div className="p-8">
@@ -26,17 +30,30 @@ const ProductDetails = () => {
                 </p>
                 <p className="text-2xl font-bold">price</p>
               </div>
-              <div className='flex gap-4'>
-                <Button className='bg-[#29337b]'>Add to Cart</Button>
-                <Button onClick={() => setEditProductModal(true)}>Edit Product</Button>
-                <Button className='bg-red-500'>Delete Product</Button>
+              <div className="flex gap-4">
+                <Button className="bg-[#29337b]" onClick={() => setAddToCart(true)}>Add to Cart</Button>
+                <Button onClick={() => setEditProductModal(true)}>
+                  Edit Product
+                </Button>
+                <Button
+                  className="bg-red-500"
+                  onClick={() => setDeleteProductModal(true)}
+                >
+                  Delete Product
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {editProductModal && <EditProduct onClose={() => setEditProductModal(false)} /> }
+      {editProductModal && (
+        <EditProduct onClose={() => setEditProductModal(false)} />
+      )}
+      {deleteProductModal && (
+        <DeleteProduct onClose={() => setDeleteProductModal(false)} />
+      )}
+      {addToCart && <AddToCart onClose={() => setAddToCart(false)} />}
     </Header>
   );
 };
