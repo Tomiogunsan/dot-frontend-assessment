@@ -2,8 +2,11 @@ import Header from "../../../components/Layout/Header";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import Button from "../../../shared/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import EditProduct from "./EditProduct";
 
 const ProductDetails = () => {
+  const [editProductModal, setEditProductModal] = useState(false)
   return (
     <Header>
       <div className="p-8">
@@ -25,13 +28,15 @@ const ProductDetails = () => {
               </div>
               <div className='flex gap-4'>
                 <Button className='bg-[#29337b]'>Add to Cart</Button>
-                <Button>Edit Product</Button>
+                <Button onClick={() => setEditProductModal(true)}>Edit Product</Button>
                 <Button className='bg-red-500'>Delete Product</Button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {editProductModal && <EditProduct onClose={() => setEditProductModal(false)} /> }
     </Header>
   );
 };
