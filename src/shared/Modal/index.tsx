@@ -1,7 +1,8 @@
 import { IModalProps } from "./interface";
 import { twMerge } from "tailwind-merge";
-import Button from "shared/Button";
+
 import ModalBase from "./ModalBase";
+import Button from "../Button";
 
 const defaultAction = {
   show: true,

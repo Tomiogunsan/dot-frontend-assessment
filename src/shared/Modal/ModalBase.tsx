@@ -2,7 +2,8 @@ import { RxCross2 } from "react-icons/rx";
 import { IModalBaseProps } from "./interface";
 
 import { twMerge } from "tailwind-merge";
-import ModalBoxLayout from "shared/ModalBoxLayout";
+import ModalBoxLayout from "../ModalBoxLayout";
+
 
 const ModalBase = ({
   onClose,
