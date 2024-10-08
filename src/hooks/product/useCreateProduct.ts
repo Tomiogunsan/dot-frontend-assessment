@@ -1,13 +1,15 @@
-import { useMutation } from "@tanstack/react-query";
+import {  useMutation } from "@tanstack/react-query";
 
 import { createProduct } from "../../services/products.service";
 
+
 export const useCreateProduct = () => {
-  const { mutate, isError, isPending } = useMutation({
+  
+  const { mutateAsync, isError, isPending } = useMutation({
     mutationFn: createProduct,
   });
   return {
-    createProduct: mutate,
+    createProduct: mutateAsync,
     createProductIsPending: isPending,
     createProductIsError: isError,
   };

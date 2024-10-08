@@ -108,7 +108,7 @@ const ProductDetails = () => {
       </div>
 
       {editProductModal && (
-        <EditProduct onClose={() => setEditProductModal(false)} />
+        <EditProduct onClose={() => setEditProductModal(false)} individualProduct={individualProduct}/>
       )}
       {deleteProductModal && (
         <DeleteProduct onClose={() => setDeleteProductModal(false)} />
