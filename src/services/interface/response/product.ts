@@ -24,3 +24,17 @@ export type IGetProductsResponse = {
   currentPage: number;
   products: IProducts[];
 };
+
+export type ICreateProductResponse = {
+  id: number;
+  stock: number;
+  imageUrl: string;
+  brand: string;
+  price: number;
+  subCategory: string;
+  category: string;
+  description: string;
+  name: string;
+  rating: number;
+  reviews: number;
+};

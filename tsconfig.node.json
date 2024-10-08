@@ -17,24 +17,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./src",
-   "paths": {
-     "@assets/*": ["./assets/*"],
-
-     "@config/*": ["./config/*"],
-
-     "@hooks/*": ["./hooks/*"],
-
-     "@constants/*": ["./constants/*"],
-     "@interfaces/*": ["./interfaces/*"],
-
-     "@pages/*": ["./pages/*"],
-
-     "@utils/*": ["./utils/*"],
-     "@features/*": ["./features/*"],
-     "@services/*": ["./services/*"],
-     "@modules/*": ["./modules/*"]
-   }
+   
+   
   },
   "include": ["vite.config.ts"]
 }
