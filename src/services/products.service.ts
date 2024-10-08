@@ -5,9 +5,10 @@ import {
   UPDATE_PRODUCT,
 } from "../config/apiUrl";
 import api from "../config/http-common";
+import { IGetProductsResponse } from "./interface/response/product";
 
 export const getAllProduct = () => {
-  return api.get(GET_ALL_PRODUCT);
+  return api.get<IGetProductsResponse>(GET_ALL_PRODUCT);
 };
 
 export const getIndividualProduct = (id: string) => {

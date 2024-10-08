@@ -5,9 +5,13 @@ import Card from "../../shared/Card";
 import Search from "../../shared/Search";
 import { RiFilter3Line } from "react-icons/ri";
 import CreateProduct from "./components/CreateProduct";
+import { useGetProducts } from "../../hooks/product/useGetProducts";
+import { Link } from "react-router-dom";
 
 const Products = () => {
-    const [addProductModal, setAddProductModal] = useState(false);
+  const [addProductModal, setAddProductModal] = useState(false);
+  const { productData } = useGetProducts();
+  console.log(productData);
   return (
     <>
       <Header>
@@ -20,12 +24,22 @@ const Products = () => {
                 <RiFilter3Line size={20} />
                 Filter{" "}
               </p>
-              <Button className="bg-[#29337b] " onClick={() => setAddProductModal(true)}>Add Product</Button>
+              <Button
+                className="bg-[#29337b] "
+                onClick={() => setAddProductModal(true)}
+              >
+                Add Product
+              </Button>
             </div>
           </div>
           <div className=" hidden md:flex items-center justify-between ">
             <p className="text-xl font-semibold ">All Products</p>
-            <Button className="bg-[#29337b] " onClick={() => setAddProductModal(true)}>Add Product</Button>
+            <Button
+              className="bg-[#29337b] "
+              onClick={() => setAddProductModal(true)}
+            >
+              Add Product
+            </Button>
           </div>
           {/* large screen search and filter */}
           <div className="hidden md:flex  md:flex-row md:justify-between py-6 ">
@@ -41,14 +55,27 @@ const Products = () => {
 
           {/* cards */}
           <div className="grid  gap-4  md:grid-cols-2 lg:grid-cols-3 px-4">
-            <Card />
-            <Card />
-            <Card />
+            {productData?.products?.map((product) => {
+              return (
+                <Link to={`/products/${product.id}`}>
+                  <Card
+                    description={product.description}
+                    name={product.name}
+                    imageUrl={product.imageUrl}
+                    price={product.price}
+                    rating={product.rating}
+                    reviews={product.reviews}
+                  />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </Header>
 
-      {addProductModal && <CreateProduct onClose={() => setAddProductModal(false)}/>}
+      {addProductModal && (
+        <CreateProduct onClose={() => setAddProductModal(false)} />
+      )}
     </>
   );
 };
