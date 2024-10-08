@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Products = () => {
   const [addProductModal, setAddProductModal] = useState(false);
   const { productData } = useGetProducts();
-  console.log(productData);
+  
   return (
     <>
       <Header>

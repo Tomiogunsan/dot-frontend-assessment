@@ -5,14 +5,14 @@ import {
   UPDATE_PRODUCT,
 } from "../config/apiUrl";
 import api from "../config/http-common";
-import { IGetProductsResponse } from "./interface/response/product";
+import { IGetProductsResponse, IProducts } from "./interface/response/product";
 
 export const getAllProduct = () => {
   return api.get<IGetProductsResponse>(GET_ALL_PRODUCT);
 };
 
 export const getIndividualProduct = (id: string) => {
-  return api.get(GET_INDIVIDUAL_PRODUCT(id));
+  return api.get<IProducts>(GET_INDIVIDUAL_PRODUCT(id));
 };
 
 export const updateProduct = (id: string) => {
