@@ -10,9 +10,13 @@ import { Link } from "react-router-dom";
 import Pagination from "shared/Pagination";
 import { IGetProductsQuery } from "@services/interface/DTO/product";
 
+import { useForm } from "react-hook-form";
+import ProductFilterModal from "./components/ProductFilterModal";
+import { IProductFilterFormFields } from "./validation/interface";
+
 const Products = () => {
   const [addProductModal, setAddProductModal] = useState(false);
-
+  const [filterModal, setFilterModal] = useState(false);
   const [queryParams, setQueryParams] = useState<IGetProductsQuery>({
     page: 1,
     search: "",
@@ -25,7 +29,40 @@ const Products = () => {
     setQueryParams((prev) => ({ ...prev, ...params }));
   };
   const { productData } = useGetProducts(queryParams);
-  console.log(queryParams);
+
+  const filterForm = useForm<IProductFilterFormFields>({
+    defaultValues: {
+      category: "",
+      subCategory: "",
+      minPrice: 0,
+      maxPrice: 0,
+    },
+  });
+
+  const submitFilter = () => {
+    updateQueryParams({
+      page: 1,
+      category:
+        filterForm.getValues("category").length > 0
+          ? (filterForm.getValues("category") as IGetProductsQuery["category"])
+          : undefined,
+      subCategory:
+        filterForm.getValues("subCategory").length > 0
+          ? (filterForm.getValues(
+              "subCategory"
+            ) as IGetProductsQuery["subCategory"])
+          : undefined,
+      minPrice:
+        filterForm.getValues("minPrice") === 0
+          ? (filterForm.getValues("minPrice") as IGetProductsQuery["minPrice"])
+          : undefined,
+      maxPrice:
+        filterForm.getValues("maxPrice") === 0
+          ? (filterForm.getValues("maxPrice") as IGetProductsQuery["maxPrice"])
+          : undefined,
+    });
+    setFilterModal(false);
+  };
 
   return (
     <>
@@ -46,7 +83,10 @@ const Products = () => {
               }}
             />
             <div className="flex justify-between pb-6">
-              <p className="flex items-center gap-[4px] text-red-800 text-lg font-semibold cursor-pointer">
+              <p
+                className="flex items-center gap-[4px] text-red-800 text-lg font-semibold cursor-pointer"
+                onClick={() => setFilterModal(true)}
+              >
                 <RiFilter3Line size={20} />
                 Filter{" "}
               </p>
@@ -84,7 +124,10 @@ const Products = () => {
               />
             </div>
 
-            <p className="flex items-center gap-[4px] text-red-800 text-lg font-semibold cursor-pointer">
+            <p
+              className="flex items-center gap-[4px] text-red-800 text-lg font-semibold cursor-pointer"
+              onClick={() => setFilterModal(true)}
+            >
               <RiFilter3Line size={20} />
               Filter{" "}
             </p>
@@ -118,6 +161,13 @@ const Products = () => {
 
       {addProductModal && (
         <CreateProduct onClose={() => setAddProductModal(false)} />
+      )}
+      {filterModal && (
+        <ProductFilterModal
+          onClose={() => setFilterModal(false)}
+          form={filterForm}
+          onSubmit={submitFilter}
+        />
       )}
     </>
   );

@@ -31,12 +31,7 @@ export type IInputProps = Omit<OutlinedInputProps, "type"> &
       | "date"
       | "datetime-local"
       | "file";
-    onChange?: (
-      // eslint-disable-next-line no-unused-vars
-      e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-      // eslint-disable-next-line no-unused-vars
-      value: string
-    ) => void;
+   
   };
 
 export type IControlledInputProps<TFieldValues extends FieldValues> = Omit<
