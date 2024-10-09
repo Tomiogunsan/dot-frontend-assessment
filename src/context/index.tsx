@@ -17,6 +17,7 @@ export type ICartContextProps = {
   addToCart: (product: IProducts) => void;
   removeFromCart: (productId: number) => void;
   decreaseItemInCart: (productId: number) => void;
+  totalPrice: number;
 };
 
 const CartContext = createContext<ICartContextProps | undefined>(undefined);
@@ -66,9 +67,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+    const totalPrice = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, decreaseItemInCart }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        decreaseItemInCart,
+        totalPrice,
+      }}
     >
       {children}
     </CartContext.Provider>

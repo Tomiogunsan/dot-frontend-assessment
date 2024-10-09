@@ -2,7 +2,7 @@ import { useCart } from "context";
 import Drawer from "../../../shared/Drawer";
 
 const AddToCart = ({ onClose }: { onClose: () => void }) => {
-  const { cart, addToCart, removeFromCart, decreaseItemInCart } = useCart();
+  const { cart, addToCart, removeFromCart, decreaseItemInCart, totalPrice } = useCart();
   return (
     <Drawer
       onClose={onClose}
@@ -47,6 +47,10 @@ const AddToCart = ({ onClose }: { onClose: () => void }) => {
             </div>
           );
         })}
+        <div className="flex justify-between text-xl font-bold pt-8">
+          <p>Total: </p>
+          <p>${totalPrice}</p>
+        </div>
       </div>
     </Drawer>
   );
