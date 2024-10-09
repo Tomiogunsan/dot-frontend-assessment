@@ -1,4 +1,14 @@
-
+export type IGetProductsQuery = {
+  page?: number;
+  limit?: number;
+  category?: string;
+  subCategory?:string;
+  minPrice?:number;
+  maxPrice?:number;
+  search?:string;
+  sort?: string;
+  order?:string
+}
 
 export type ICreateProductQuery = {
   name: string;

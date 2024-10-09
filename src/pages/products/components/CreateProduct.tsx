@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateProduct } from "hooks/product/useCreateProduct";
-import { toastAlert } from "@utils/toastConfig";
+
 import { CircularProgress } from "@mui/material";
 import Button from "shared/Button";
 import { createProductSchema } from "../validation";
@@ -30,10 +30,10 @@ const CreateProduct = ({ onClose }: { onClose: () => void }) => {
     try {
       await createProduct(data);
       onClose();
-      toastAlert.success("Product Created Successfully");
+     
     } catch (error) {
       console.log(error);
-      toastAlert.error("Something went wrong");
+     
     }
   };
 

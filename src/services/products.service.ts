@@ -1,3 +1,4 @@
+import { queryParamsHelper } from "config/query-params";
 import {
   CREATE_PRODUCT,
   DELETE_PRODUCT,
@@ -6,15 +7,17 @@ import {
   UPDATE_PRODUCT,
 } from "../config/apiUrl";
 import api from "../config/http-common";
-import { ICreateProductQuery } from "./interface/DTO/product";
+import { ICreateProductQuery, IGetProductsQuery } from "./interface/DTO/product";
 import {
   ICreateProductResponse,
   IGetProductsResponse,
   IProducts,
 } from "./interface/response/product";
 
-export const getAllProduct = () => {
-  return api.get<IGetProductsResponse>(GET_ALL_PRODUCT);
+export const getAllProduct = (queryParams: IGetProductsQuery) => {
+  // const queryParam = queryParamsHelper(queryKey?.[1])
+  const url = `${GET_ALL_PRODUCT}${queryParamsHelper(queryParams)}`;
+  return api.get<IGetProductsResponse>(url);
 };
 
 export const getIndividualProduct = (id: string) => {

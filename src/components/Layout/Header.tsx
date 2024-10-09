@@ -8,7 +8,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
           <p className="text-2xl font-bold">E-Commerce</p>
           <p>Cart</p>
         </div>
-        <div className="bg-[#dfdddd]">{children}</div>
+        <div className="bg-[#dfdddd] py-14">{children}</div>
       </div>
     </div>
   );

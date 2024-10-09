@@ -1,20 +1,36 @@
+import { useDebouncedValue } from "hooks/useDebounce";
+import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 
-const Search = () => {
+
+type Props = {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+};
+const Search = ({ searchValue, setSearchValue }: Props) => {
+  const [localValue, setLocalValue] = useState(searchValue);
+  const debouncedValue = useDebouncedValue(localValue, 200);
+
+  useEffect(() => {
+    setSearchValue(debouncedValue);
+  }, [debouncedValue, setSearchValue]);
+
   return (
-    <form className="flex items-center justify-between gap-4 bg-gray-100 p-2 rounded-md flex-1 ">
+    <div className="flex items-center justify-between gap-4 bg-gray-100 p-2 rounded-md flex-1 ">
       <input
         type="text"
-        name="name"
         placeholder="Search by categories..."
         className="flex-1 bg-transparent outline-none"
-        // value={searchQuery}
-        // onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => {
+          // console.log(e.target.value)
+          setLocalValue(e.target.value);
+        }}
+        value={localValue}
       />
       <button className="cursor-pointer text-[#aaa6a6]">
-        <IoIosSearch  />
+        <IoIosSearch />
       </button>
-    </form>
+    </div>
   );
 };
 
