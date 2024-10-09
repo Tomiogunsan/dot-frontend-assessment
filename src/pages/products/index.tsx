@@ -6,7 +6,7 @@ import Search from "../../shared/Search";
 import { RiFilter3Line } from "react-icons/ri";
 import CreateProduct from "./components/CreateProduct";
 import { useGetProducts } from "../../hooks/product/useGetProducts";
-import { Link } from "react-router-dom";
+
 import Pagination from "shared/Pagination";
 import { IGetProductsQuery } from "@services/interface/DTO/product";
 
@@ -14,9 +14,13 @@ import { useForm } from "react-hook-form";
 import ProductFilterModal from "./components/ProductFilterModal";
 import { IProductFilterFormFields } from "./validation/interface";
 
+import { useCart } from "context";
+
 const Products = () => {
   const [addProductModal, setAddProductModal] = useState(false);
   const [filterModal, setFilterModal] = useState(false);
+
+  const { addToCart } = useCart();
   const [queryParams, setQueryParams] = useState<IGetProductsQuery>({
     page: 1,
     search: "",
@@ -134,19 +138,19 @@ const Products = () => {
           </div>
 
           {/* cards */}
-          <div className="grid  gap-4  md:grid-cols-2 lg:grid-cols-3 px-4">
+          <div className="grid  gap-4  md:grid-cols-2 lg:grid-cols-3 px-4 h-max">
             {productData?.products?.map((product) => {
               return (
-                <Link to={`/products/${product.id}`}>
-                  <Card
-                    description={product.description}
-                    name={product.name}
-                    imageUrl={product.imageUrl}
-                    price={product.price}
-                    rating={product.rating}
-                    reviews={product.reviews}
-                  />
-                </Link>
+                <Card
+                  description={product.description}
+                  name={product.name}
+                  imageUrl={product.imageUrl}
+                  price={product.price}
+                  rating={product.rating}
+                  reviews={product.reviews}
+                  onClick={() => addToCart(product)}
+                  productId={product.id}
+                />
               );
             })}
           </div>

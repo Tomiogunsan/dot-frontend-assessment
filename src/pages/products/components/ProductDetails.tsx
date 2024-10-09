@@ -8,6 +8,9 @@ import DeleteProduct from "./DeleteProduct";
 import AddToCart from "./AddToCart";
 import { useGetIndividualProduct } from "../../../hooks/product/useGetIndividualProduct";
 import { MdOutlineStarPurple500 } from "react-icons/md";
+import { useCart } from "context";
+import { IProducts } from "@services/interface/response/product";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -15,7 +18,8 @@ const ProductDetails = () => {
   const [deleteProductModal, setDeleteProductModal] = useState(false);
   const [addToCart, setAddToCart] = useState(false);
   const { individualProduct } = useGetIndividualProduct(id as string);
-
+  
+const {addToCart: addItemToCart} = useCart()
   
 
   return (
@@ -88,7 +92,10 @@ const ProductDetails = () => {
               <div className="flex  flex-col gap-4 mt-4 md:flex-row">
                 <Button
                   className="bg-[#29337b]"
-                  onClick={() => setAddToCart(true)}
+                  onClick={() => {
+                    addItemToCart(individualProduct as IProducts)
+                    setAddToCart(true)
+                  }}
                 >
                   Add to Cart
                 </Button>

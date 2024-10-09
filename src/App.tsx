@@ -12,6 +12,7 @@ import {
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import Loader from "./shared/Loader";
+import { CartProvider } from "context";
 
 function App() {
   const queryClient = new QueryClient({
@@ -50,28 +51,30 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<Loader />}>
-        <RouterProvider router={router} />
-        <Toaster
-          position="top-center"
-          gutter={12}
-          containerStyle={{ margin: "8px" }}
-          containerClassName="!z-[999999999999]"
-          toastOptions={{
-            success: {
-              duration: 3000,
-            },
-            error: {
-              duration: 5000,
-            },
-            style: {
-              fontSize: "16px",
-              maxWidth: "500px",
-              padding: "16px 24px",
-            },
-          }}
-        />
-      </Suspense>
+      <CartProvider>
+        <Suspense fallback={<Loader />}>
+          <RouterProvider router={router} />
+          <Toaster
+            position="top-center"
+            gutter={12}
+            containerStyle={{ margin: "8px" }}
+            containerClassName="!z-[999999999999]"
+            toastOptions={{
+              success: {
+                duration: 3000,
+              },
+              error: {
+                duration: 5000,
+              },
+              style: {
+                fontSize: "16px",
+                maxWidth: "500px",
+                padding: "16px 24px",
+              },
+            }}
+          />
+        </Suspense>
+      </CartProvider>
     </QueryClientProvider>
   );
 }

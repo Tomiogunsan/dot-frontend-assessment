@@ -1,6 +1,5 @@
-import { Control, FieldErrorsImpl, FieldValues, Path } from 'react-hook-form';
-import { IFieldHelperTextProps } from 'shared/FieldHelperText/interface';
-
+import { Control, FieldErrorsImpl, FieldValues, Path } from "react-hook-form";
+import { IFieldHelperTextProps } from "shared/FieldHelperText/interface";
 
 export interface IBaseControlledField<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
@@ -40,7 +39,7 @@ export type ICheckboxProps = ICheckboxBaseProps &
   };
 
 export type IControlledCheckbox<TFieldValues extends FieldValues> =
-  IBaseControlledField<TFieldValues> & Omit<ICheckboxProps, 'value' | 'name'>;
+  IBaseControlledField<TFieldValues> & Omit<ICheckboxProps, "value" | "name">;
 
 export type ICheckboxComponentProps = {
   name?: string;
@@ -57,4 +56,4 @@ export type ICheckboxComponentProps = {
 
 export type IControlledCheckboxComponent<TFieldValues extends FieldValues> =
   IBaseControlledField<TFieldValues> &
-    Omit<ICheckboxComponentProps, 'value' | 'name'>;
+    Omit<ICheckboxComponentProps, "value" | "name">;
