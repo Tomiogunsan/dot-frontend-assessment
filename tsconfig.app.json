@@ -32,5 +32,6 @@
       "@hooks/*": ["./hookss/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  
 }
