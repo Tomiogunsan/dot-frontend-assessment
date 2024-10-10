@@ -1,15 +1,18 @@
-import Header from "../../../components/Layout/Header";
+
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import Button from "../../../shared/Button";
+
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import EditProduct from "./EditProduct";
 import DeleteProduct from "./DeleteProduct";
 import AddToCart from "./AddToCart";
-import { useGetIndividualProduct } from "../../../hooks/product/useGetIndividualProduct";
+
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { useCart } from "context";
 import { IProducts } from "@services/interface/response/product";
+import Header from "@components/Layout/Header";
+import { useGetIndividualProduct } from "hooks/product/useGetIndividualProduct";
+import Button from "shared/Button";
 
 
 const ProductDetails = () => {

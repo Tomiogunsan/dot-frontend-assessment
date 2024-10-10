@@ -9,7 +9,7 @@ type ICard = {
   description: string;
   rating: number;
   reviews: number;
-  onClick: () => void;
+  onClick?: () => void;
   productId: number;
 };
 

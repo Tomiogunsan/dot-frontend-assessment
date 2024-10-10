@@ -1,6 +1,7 @@
 import { useDeleteProduct } from "hooks/product/useDeleteProduct";
-import Modal from "../../../shared/Modal";
+
 import { useNavigate, useParams } from "react-router-dom";
+import Modal from "shared/Modal";
 
 const DeleteProduct = ({ onClose }: { onClose: () => void }) => {
   const { id } = useParams();

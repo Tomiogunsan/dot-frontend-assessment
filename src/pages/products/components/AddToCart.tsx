@@ -1,5 +1,6 @@
 import { useCart } from "context";
-import Drawer from "../../../shared/Drawer";
+import Drawer from "shared/Drawer";
+
 
 const AddToCart = ({ onClose }: { onClose: () => void }) => {
   const { cart, addToCart, removeFromCart, decreaseItemInCart, totalPrice } = useCart();

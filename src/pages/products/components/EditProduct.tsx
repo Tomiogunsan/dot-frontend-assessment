@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
-import ControlledInput from "../../../shared/Input/ControlledInput";
-import Modal from "../../../shared/Modal";
-import Button from "../../../shared/Button";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createProductSchema } from "../validation";
 import { IProducts } from "@services/interface/response/product";
@@ -14,6 +12,9 @@ import { useParams } from "react-router-dom";
 
 import CircularProgress from "shared/CircularProgress";
 import { QueryClient } from "@tanstack/react-query";
+import Modal from "shared/Modal";
+import ControlledInput from "shared/Input/ControlledInput";
+import Button from "shared/Button";
 
 type Props = {
   individualProduct: IProducts | undefined;
