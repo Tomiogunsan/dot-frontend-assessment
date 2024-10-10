@@ -1,6 +1,14 @@
-import { IFilterBox } from '@interfaces/filterBox.interface';
+
 import { twMerge } from 'tailwind-merge';
 
+
+export type IFilterBox = {
+  openModalBox: boolean;
+  children?: React.ReactNode;
+  onBackgroundClick?: () => void;
+  className?: string;
+  contentContainerClassName?: string;
+};
 const ModalBoxLayout = ({
   openModalBox,
   children,

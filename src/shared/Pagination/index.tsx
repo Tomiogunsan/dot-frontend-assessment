@@ -5,7 +5,7 @@ import { IPagination } from "./interface";
 const Pagination = ({ pageSize, currentPage, onChangeOfPage, lengthOfData }: IPagination) => {
   return (
     <div className="flex  justify-between px-6 items-center ">
-      <div className="flex items-center gap-8 pt-6">
+      <div className="flex items-center gap-[9px] md:gap-8 pt-6">
         <Button className="bg-[#9294a4]">Previous</Button>
         <span>
           {" "}

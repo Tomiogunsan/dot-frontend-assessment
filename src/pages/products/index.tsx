@@ -15,6 +15,7 @@ import ProductFilterModal from "./components/ProductFilterModal";
 import { IProductFilterFormFields } from "./validation/interface";
 
 import { useCart } from "context";
+import CircularProgress from "shared/CircularProgress";
 
 const Products = () => {
   const [addProductModal, setAddProductModal] = useState(false);
@@ -32,7 +33,7 @@ const Products = () => {
   const updateQueryParams = (params: Partial<IGetProductsQuery>) => {
     setQueryParams((prev) => ({ ...prev, ...params }));
   };
-  const { productData } = useGetProducts(queryParams);
+  const { productData, productIsLoading } = useGetProducts(queryParams);
 
   const filterForm = useForm<IProductFilterFormFields>({
     defaultValues: {
@@ -117,7 +118,6 @@ const Products = () => {
               <Search
                 searchValue={queryParams.search as string}
                 setSearchValue={(value) => {
-                  console.log(value);
                   if (queryParams.search !== value) {
                     updateQueryParams({
                       search: value,
@@ -138,22 +138,29 @@ const Products = () => {
           </div>
 
           {/* cards */}
-          <div className="grid  gap-4  md:grid-cols-2 lg:grid-cols-3 px-4 h-max">
-            {productData?.products?.map((product) => {
-              return (
-                <Card
-                  description={product.description}
-                  name={product.name}
-                  imageUrl={product.imageUrl}
-                  price={product.price}
-                  rating={product.rating}
-                  reviews={product.reviews}
-                  onClick={() => addToCart(product)}
-                  productId={product.id}
-                />
-              );
-            })}
-          </div>
+          {productIsLoading ? (
+            <div className='flex flex-col items-center justify-center mt-[100px]'>
+              <CircularProgress className='bg-[#29337b] rounded-md' size={40}/>
+              <p> Loading Product ....</p>
+            </div>
+          ) : (
+            <div className="grid  gap-4  md:grid-cols-2 lg:grid-cols-3 px-4 h-max">
+              {productData?.products?.map((product) => {
+                return (
+                  <Card
+                    description={product.description}
+                    name={product.name}
+                    imageUrl={product.imageUrl}
+                    price={product.price}
+                    rating={product.rating}
+                    reviews={product.reviews}
+                    onClick={() => addToCart(product)}
+                    productId={product.id}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <Pagination
