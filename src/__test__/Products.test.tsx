@@ -42,8 +42,6 @@ describe("products", () => {
       },
       productIsLoading: false,
     });
-
-    
   });
   it("renders products", () => {
     render(
@@ -99,6 +97,5 @@ describe("products", () => {
     expect(screen.getAllByText("Filter")).toBeDefined();
     expect(screen.getAllByText("Add Product")).toBeDefined();
     expect(screen.getAllByText("All Products")).toBeDefined();
-   
   });
 });
