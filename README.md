@@ -1,8 +1,8 @@
 # Project setup
 
 ```
-run npm install after cloning the repo
-npm run dev to start the project
+run yarn install after cloning the repo
+yarn run dev to start the project
 
 ```
 
