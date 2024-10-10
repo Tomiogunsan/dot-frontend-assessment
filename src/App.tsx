@@ -1,18 +1,18 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import routes from "./routes";
+
 import paths from "./routes/paths";
 import {
   Navigate,
-  Route,
   RouterProvider,
-  Routes,
   createBrowserRouter,
-  createRoutesFromElements,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import Loader from "./shared/Loader";
 import { CartProvider } from "context";
+import Products from "@pages/products";
+import ProductDetails from "@pages/products/components/ProductDetails";
+import PageNotFound from "@pages/PageNotFound";
 
 function App() {
   const queryClient = new QueryClient({
@@ -24,30 +24,21 @@ function App() {
     },
   });
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <>
-        <Route
-          path={"/*"}
-          element={
-            <Routes>
-              {routes.map(({ path, element: Element }) => (
-                <Route
-                  key={path as string}
-                  path={path as string}
-                  element={<Element />}
-                />
-              ))}
-              <Route
-                path="*"
-                element={<Navigate to={paths.pageNotFound()} replace />}
-              />
-            </Routes>
-          }
-        />
-      </>
-    )
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navigate to={paths.product()} replace />,
+    },
+    {
+      path: paths.product(),
+      element: <Products />,
+    },
+    {
+      path: paths.productDetail(":id"),
+      element: <ProductDetails />,
+    },
+    { path: paths.pageNotFound(), element: <PageNotFound /> },
+  ]);
 
   return (
     <QueryClientProvider client={queryClient}>
