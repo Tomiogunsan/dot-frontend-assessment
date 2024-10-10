@@ -15,5 +15,5 @@ The pagination functionality would have worked better if the data coming from ba
 
 ```
 ```
-if given more time I would have written more test cases
+if given more time I would have written the test cases
 ```
